@@ -73,6 +73,23 @@
 
     <button id="logoutButton">Logout</button>
 
+    <button id="settings" onclick="displaySettings()">settings</button>
+
+    <div id="settingsDisplay">
+      <button id="minimizeSettingsButton" onclick="displaySettings()">x</button>
+      <div>
+        <button id="lowResButton" onclick="changeResolution('low')">
+          low resolution
+        </button>
+        <button id="highResButton" onclick="changeResolution('high')">
+          high resolution
+        </button>
+      </div>
+      <button id="disableAnimationsButton" onclick="disableAnimations()">
+        Disable Background Animation
+      </button>
+    </div>
+
     <button
       id="showCookiesButton"
       class="leaderboardButton"

@@ -428,6 +428,48 @@ document.addEventListener("DOMContentLoaded", (event) => {
   logoutButton.addEventListener("click", handleLogout);
 });
 
+function changeResolution(resolution) {
+  if (resolution === "low") {
+    document.body.style.backgroundImage = `url(
+      "texture_cookie_game/background3Downscaled.jpeg"
+    )`;
+  } else if (resolution === "high") {
+    document.body.style.backgroundImage = `url(
+      "texture_cookie_game/background3.jpeg"
+    )`;
+  }
+}
+
+let isAnimationsDisplayed = true;
+
+function disableAnimations() {
+  const disableAnimationsButton = document.getElementById(
+    "disableAnimationsButton"
+  );
+  if (isAnimationsDisplayed) {
+    disableAnimationsButton.innerText = "Enable Background Animation";
+    document.body.style.animation = "none";
+    isAnimationsDisplayed = false;
+  } else {
+    disableAnimationsButton.innerText = "Disable Background Animation";
+    document.body.style.animation = "moveBackground 120s linear infinite";
+    isAnimationsDisplayed = true;
+  }
+}
+
+let isSettingsDisplayed = false;
+
+function displaySettings() {
+  const settings = document.getElementById("settingsDisplay");
+  if (!isSettingsDisplayed) {
+    settings.style.display = "flex";
+    isSettingsDisplayed = true;
+  } else {
+    settings.style.display = "none";
+    isSettingsDisplayed = false;
+  }
+}
+
 // Function to update the display
 function updateDisplay() {
   document.getElementById("total").innerText = formatNumber(total);

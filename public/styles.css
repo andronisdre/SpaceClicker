@@ -8,8 +8,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url("texture_cookie_game/background3.jpeg");
-  background-size: 120%;
+  background-image: url("texture_cookie_game/background3Downscaled.jpeg");
+  background-size: auto 120vh;
   background-repeat: repeat-x; /* Scroll horizontally */
   animation: moveBackground 120s linear infinite;
 }
@@ -62,6 +62,42 @@ body {
   color: #000000;
   user-select: none;
 }
+#settings {
+  position: fixed;
+  top: 10px;
+  left: 232px;
+  font-size: 16px;
+  color: #000000;
+  user-select: none;
+}
+#settingsDisplay {
+  flex-direction: column;
+  border: 5px solid black;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 200px;
+  width: 400px;
+  height: 300px;
+  background-color: gray;
+  display: none;
+  z-index: 2;
+  box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, 0.4);
+}
+#lowResButton,
+#highResButton {
+  margin: 20px;
+}
+#minimizeSettingsButton {
+  position: sticky;
+  background-color: rgb(133, 18, 18);
+  color: black;
+  top: 0px;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+}
 
 #displayArea {
   font-size: 24px;
@@ -95,7 +131,7 @@ body {
 .maxButton {
   padding: 10px;
   border: 2px solid #808080; /* Grey border for a disabled look */
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: #d3d3d3; /* Grey background color */
   color: #808080; /* Grey text color */
   user-select: none; /* Prevent text selection */
@@ -155,8 +191,8 @@ body {
 }
 
 .buyButton.notBuyable {
-  background-color: #8b0000; /* Dark red when not buyable */
-  border-color: #8b0000; /* Red border when not buyable */
+  background-color: #700a0a; /* Dark red when not buyable */
+  border-color: #700a0a; /* Red border when not buyable */
 }
 
 /* Adjust the grid dimensions and gap as needed */
