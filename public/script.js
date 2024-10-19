@@ -610,13 +610,13 @@ function buyButton(cost, button, iter) {
     let toPerSecs = getButtonRate(buttonCost);
     totalPerSecond += Math.round(toPerSecs);
 
+    // Play sound for button purchase
+    playBuySound();
+
     updateDisplay();
 
     // Show notification for autoclicker bought with a longer duration
     showNotification("Autoclicker Bought!", 3000);
-
-    // Play sound for button purchase
-    playBuySound();
   }
 }
 
@@ -627,6 +627,8 @@ function playBuySound() {
   buySound.currentTime = 0;
   buySound.play();
 }
+
+const cookieButton = document.getElementById("cookieButton");
 
 function buyUpgradeButton(button) {
   let buttonCost = parseInt(button.getAttribute("data-cost"));
@@ -656,6 +658,17 @@ function buyUpgradeButton(button) {
     // Check for the next upgrade button
     const nextCost = buttonCost * 3; // Next cost is 5 times the current cost
     const nextMultiplier = 2; // Multiplier for the next upgrade
+
+    cookieButton.style.transform = "scale(1.6)";
+    cookieButton.style.opacity = "0.5";
+
+    setTimeout(() => {
+      cookieButton.style.backgroundImage = `url(
+        "texture_cookie_game/asteroid2.png"
+      )`;
+      cookieButton.style.opacity = "1";
+      cookieButton.style.transform = "scale(1)";
+    }, 100);
 
     // Get or create the next upgrade button
     const nextButton = getNextUpgradeButton(nextCost, nextMultiplier);
@@ -701,12 +714,12 @@ function getNextUpgradeButton(cost, multiplier) {
   const iteration = Math.log(cost / 10) / Math.log(3) + 1;
   const buttonName = getCookieButtonName(iteration);
   nextButton.innerText =
-    "Upgrade cookie clicker" +
+    "Upgrade celestial body" +
     " (-" +
     formatNumber(cost) +
-    " total cookies, " +
+    " total matter, " +
     multiplier +
-    "* more cookies from pressing the cookie)";
+    "* more matter from pressing the body)";
 
   // Set the position to bottom left
   nextButton.style.position = "fixed";
@@ -820,31 +833,31 @@ function endPop() {
 function getCookieButtonName(index) {
   // Add more names as needed
   const names = [
-    "Cursor",
-    "Grandma",
-    "Potato Stand",
-    "Mine",
-    "Factory",
-    "Bank",
-    "Lemonade Stand",
-    "Wizard Tower",
-    "Shipment",
-    "Alchemy Lab",
+    "Laser",
+    "Cannon",
+    "Telekinesis",
+    "Fragment",
+    "Factor Y",
+    "Quark Splitter",
+    "Void Blaster",
+    "Wizard",
+    "Contorter",
+    "Astral Cleaver",
     "Portal",
     "Time Machine",
     "Antimatter Condenser",
-    "Prism",
+    "Strange",
     "Chancemaker",
     "Fractal Engine",
-    "Javascript Console",
-    "Idleverse",
+    "Silent Watcher",
+    "Wonder",
     "Idle Dimension",
-    "Universal Paperclips",
-    "Prune Juice",
-    "Time Bandits",
-    "Timewarp Drive",
-    "301 Redirect",
+    "Universal Omitter",
+    "Nuclear Extractor",
+    "Black hole",
     "Reality Bending",
+    "Deus",
+    "Oghma Infinium",
   ];
   return names[index - 1] || "Unnamed"; // Default to "Unnamed" if out of names
 }
