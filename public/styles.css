@@ -25,7 +25,7 @@ body {
     background-position: 0 0;
   }
   100% {
-    background-position: calc(-120vw) 0; /* Scroll horizontally by the width of the viewport */
+    background-position: calc(-240vh) 0; /* Scroll horizontally by the width of the viewport */
   }
 }
 
@@ -113,7 +113,7 @@ body {
   user-select: none; /* Prevent text selection */
 }
 
-#clickTheCookie {
+#clickTheMatter {
   position: fixed;
   top: 250px;
   color: rgb(255, 255, 255); /* Text color */
@@ -152,7 +152,7 @@ body {
   position: fixed;
   transform: scale(1); /* Initialize transform property */
   color: white; /* Text color */
-  background-image: url("texture_cookie_game/shittyMeteoroid.png"); /* Replace with your images path */
+  background-image: url("texture_cookie_game/matter1.png"); /* Replace with your images path */
   background-size: 150% 150%;
   background-position: center;
   transition: transform 0.1s ease-in-out; /* Add transition for smoother animation */
@@ -179,6 +179,11 @@ body {
   font-size: 12px;
   transform: scale(auto);
   width: auto;
+  transition: transform 0.3s ease; /* Smooth transformation */
+  animation: float 3s ease-in-out infinite; /* Adjust duration for speed */
+}
+
+.maxButton {
   transition: transform 0.3s ease; /* Smooth transformation */
   animation: float 3s ease-in-out infinite; /* Adjust duration for speed */
 }
@@ -235,7 +240,7 @@ body {
     width: 100px;
     height: 100px;
   }
-  #clickTheCookie {
+  #clickTheMatter {
     top: 180px;
     font-size: 18px;
   }

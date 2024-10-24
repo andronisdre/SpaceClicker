@@ -583,7 +583,7 @@ function playClickSound() {
 }
 
 // Updated buyButton function to handle iteration replacement
-function buyButton(cost, button, iter) {
+function buyButton(cost, button, iter, baseCost) {
   let buttonCost = parseInt(cost);
 
   if (total >= buttonCost) {
@@ -607,7 +607,7 @@ function buyButton(cost, button, iter) {
       nextButton.style.display = "inline-block";
     }
 
-    let toPerSecs = getButtonRate(buttonCost);
+    let toPerSecs = getButtonRate(baseCost);
     totalPerSecond += Math.round(toPerSecs);
 
     // Play sound for button purchase
@@ -664,11 +664,15 @@ function buyUpgradeButton(button) {
 
     setTimeout(() => {
       cookieButton.style.backgroundImage = `url(
-        "texture_cookie_game/asteroid2.png"
+        "texture_cookie_game/matter${upgradeButtonIterations}.png"
       )`;
       cookieButton.style.opacity = "1";
       cookieButton.style.transform = "scale(1)";
     }, 100);
+
+    let upgradeButtonName = getUpgradeButtonName(upgradeButtonIterations);
+    const clickTheMatterText = document.getElementById("clickTheMatter");
+    clickTheMatterText.innerText = `Click the ${upgradeButtonName}!`;
 
     // Get or create the next upgrade button
     const nextButton = getNextUpgradeButton(nextCost, nextMultiplier);
@@ -764,7 +768,7 @@ function showNotification(message, duration = 1000) {
 
   // Ensure the notification is not covering buttons or "total cookies" text
   const elementsToAvoid = document.querySelectorAll(
-    ".buyButton, #displayArea, #clickTheCookie"
+    ".buyButton, #displayArea, #clickTheMatter"
   );
   elementsToAvoid.forEach(function (element) {
     const rect = element.getBoundingClientRect();
@@ -862,6 +866,38 @@ function getCookieButtonName(index) {
   return names[index - 1] || "Unnamed"; // Default to "Unnamed" if out of names
 }
 
+function getUpgradeButtonName(index) {
+  // Add more names as needed
+  const names = [
+    "meteoroid",
+    "asteroid",
+    "cookie",
+    "Fragment",
+    "Factor Y",
+    "Quark Splitter",
+    "Void Blaster",
+    "Wizard",
+    "Contorter",
+    "Astral Cleaver",
+    "Portal",
+    "Time Machine",
+    "Antimatter Condenser",
+    "Strange",
+    "Chancemaker",
+    "Fractal Engine",
+    "Silent Watcher",
+    "Wonder",
+    "Idle Dimension",
+    "Universal Omitter",
+    "Nuclear Extractor",
+    "Black hole",
+    "Reality Bending",
+    "Deus",
+    "Oghma Infinium",
+  ];
+  return names[index - 1] || "Unnamed"; // Default to "Unnamed" if out of names
+}
+
 function getButtonRate(cost) {
   // Formula for button rate, rounded to the nearest integer
   return Math.round(1 + (1 / 400) * cost);
@@ -901,7 +937,7 @@ function createButtonIteration(iteration, storedIter) {
 
     button.onclick = function () {
       const iter = iteration;
-      buyButton(this.getAttribute("data-cost"), this, iter);
+      buyButton(this.getAttribute("data-cost"), this, iter, baseCost);
     };
 
     if (i === maxIterations) {
