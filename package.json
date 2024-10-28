@@ -17,20 +17,24 @@
       "public/**/*",
       "main.js"
     ],
-    "extraFiles": [
-      {
-        "from": "node_modules/electron/dist/ffmpeg.dll",
-        "to": "."
-      }
-    ],
     "win": {
-      "target": "nsis"
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "gameIcon/SpaceClickerIcon.ico"
     },
-    "mac": {
-      "target": "dmg"
-    },
-    "linux": {
-      "target": "AppImage"
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "SpaceClickerElectron"
     }
   },
   "author": "andronisdre",

@@ -7,6 +7,7 @@ const createWindow = () => {
     },
     width: 1000,
     height: 700,
+    autoHideMenuBar: true,
   });
 
   // Clear cache when the window is created

@@ -435,7 +435,7 @@ function changeResolution(resolution) {
     )`;
   } else if (resolution === "high") {
     document.body.style.backgroundImage = `url(
-      "texture_cookie_game/background3.jpeg"
+      "texture_cookie_game/background3Downscaled.jpeg"
     )`;
   }
 }
@@ -709,6 +709,7 @@ function hidePreviousIterations(currentButton) {
 function getNextUpgradeButton(cost, multiplier) {
   const nextButton = document.createElement("button");
   nextButton.className = "buyButton notBuyable";
+  nextButton.id = "upgradeButton";
   nextButton.setAttribute("data-cost", cost);
   nextButton.setAttribute("data-multiplier", multiplier);
   checkButtonBuyableStatus();
@@ -725,15 +726,11 @@ function getNextUpgradeButton(cost, multiplier) {
     multiplier +
     "* more matter from pressing the body)";
 
-  // Set the position to bottom left
-  nextButton.style.position = "fixed";
-  nextButton.style.top = "40%"; /* Adjust the distance from the bottom */
-  nextButton.style.left = "38%"; /* Adjust the distance from the left */
-  nextButton.style.transform =
-    "translateX(-50%)"; /* Center the button horizontally */
-
   // Find the container for the autoclicker buttons
-  const autoclickerContainer = document.getElementById("buttonGrid");
+  const autoclickerContainer = document.getElementById("upgradebuttonGrid");
+
+  autoclickerContainer.style.display = "flex";
+  autoclickerContainer.style.justifyContent = "center";
 
   // Insert the next button at the end of the autoclicker buttons container
   autoclickerContainer.appendChild(nextButton);
