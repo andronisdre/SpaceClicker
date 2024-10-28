@@ -17,6 +17,12 @@
       "public/**/*",
       "main.js"
     ],
+    "extraFiles": [
+      {
+        "from": "node_modules/electron/dist/ffmpeg.dll",
+        "to": "."
+      }
+    ],
     "win": {
       "target": "nsis"
     },
