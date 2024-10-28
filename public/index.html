@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/11.0.1/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/11.0.1/firebase-auth-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/11.0.1/firebase-firestore-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/11.0.1/firebase-functions-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/11.0.1/firebase-messaging-compat.js"
+    ></script>
+    <script defer src="/__/firebase/11.0.1/firebase-storage-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/11.0.1/firebase-analytics-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/11.0.1/firebase-remote-config-compat.js"
+    ></script>
+    <script
+      defer
+      src="/__/firebase/11.0.1/firebase-performance-compat.js"
+    ></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=false"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8024845659844583"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Cookie Clicker Game</title>
+  </head>
+  <body>
+    <p id="displayArea">
+      Total Space Matter: <span id="total">0</span> | Total Clicks:
+      <span id="clicks">0</span> | Matter/second:
+      <span id="totalPerSecond">0</span>/s
+    </p>
+
+    <div
+      id="cookieButton"
+      class="cookieButton"
+      onmousedown="startPop()"
+      onmouseup="endPop()"
+      onclick="incrementAndDisplay()"
+    ></div>
+
+    <!-- Upgrade Button -->
+    <button
+      id="upgradeButton"
+      class="buyButton notBuyable"
+      data-cost="100"
+      data-multiplier="2"
+      onclick="buyUpgradeButton(this)"
+    >
+      Upgrade celestial body (-100 total Matter, 2* more Matter from pressing
+      the body)
+    </button>
+
+    <button id="loginButton" onclick="googleLogin()">Login with google</button>
+
+    <button id="logoutButton">Logout</button>
+
+    <button id="settings" onclick="displaySettings()">settings</button>
+
+    <div id="settingsDisplay">
+      <button id="minimizeSettingsButton" onclick="displaySettings()">x</button>
+      <div>
+        <button id="lowResButton" onclick="changeResolution('low')">
+          low resolution
+        </button>
+        <button id="highResButton" onclick="changeResolution('high')">
+          high resolution
+        </button>
+      </div>
+      <button id="disableAnimationsButton" onclick="disableAnimations()">
+        Disable Background Animation
+      </button>
+    </div>
+
+    <button
+      id="showCookiesButton"
+      class="leaderboardButton"
+      onclick="displayLeaderboard('totalMatter')"
+    >
+      Matter
+    </button>
+    <button
+      id="showClicksButton"
+      class="leaderboardButton"
+      onclick="displayLeaderboard('totalClicks')"
+    >
+      Clicks
+    </button>
+
+    <!-- Grid for all buttons including "Buy Autoclicker" -->
+    <div id="buttonGrid" class="grid" style="top: 50%">
+      <!-- Buttons will be dynamically added here using JavaScript -->
+    </div>
+
+    <!-- Notifications container -->
+    <div id="notification-container"></div>
+
+    <!-- Click the celestial body text -->
+    <div id="clickTheMatter">Click the meteoroid!</div>
+
+    <div id="musicAttribution">
+      contact me: andrebulow13@gmail.com | music from epidemic sound
+    </div>
+
+    <audio id="clickSound" src="audio_cookie_game/space-explosion.mp3"></audio>
+    <audio id="buySound" src="audio_cookie_game/boomSound.mp3"></audio>
+    <audio
+      id="backgroundMusic"
+      src="audio_cookie_game/lowFrequencySound2.mp3"
+    ></audio>
+
+    <script>
+      const tracks = [
+        "audio_cookie_game/spaceMusic1.mp3",
+        "audio_cookie_game/spaceMusic2.mp3",
+        "audio_cookie_game/Rubik'sCubeFromNowOn.mp3",
+        "audio_cookie_game/KingdomofHopeTedBeattie.mp3",
+        "audio_cookie_game/StayInOrbitVictorLundberg.mp3",
+      ];
+
+      tracks.sort((a, b) => 0.5 - Math.random());
+
+      let currentTrackIndex = 0;
+      const audioElement = document.getElementById("backgroundMusic");
+
+      // Function to play the next track with a 5-second delay
+      function playNextTrack() {
+        // Update the track index
+        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+
+        // Add a 5-second delay before playing the next track
+        setTimeout(() => {
+          audioElement.src = tracks[currentTrackIndex];
+          audioElement.play();
+        }, 8000); // 5000 milliseconds = 5 seconds
+      }
+
+      // Event listener for when the audio ends
+      audioElement.addEventListener("ended", playNextTrack);
+
+      // Start the first track
+      audioElement.play();
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

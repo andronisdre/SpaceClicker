@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "cookieclicker-ccf9b"
+  },
+  "targets": {
+    "cookieclicker-ccf9b": {
+      "hosting": [
+        "cookieclicker"
+      ]
+    }
+  }
+}

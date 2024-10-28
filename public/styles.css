@@ -1,0 +1,408 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
+
+button:hover {
+  cursor: pointer;
+  background-color: gray;
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.7);
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("texture_cookie_game/background3Downscaled.jpeg");
+  background-size: auto 120vh;
+  background-repeat: repeat-x; /* Scroll horizontally */
+  animation: moveBackground 120s linear infinite;
+}
+
+/* Animation to scroll the background horizontally */
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: calc(-240vh) 0; /* Scroll horizontally by the width of the viewport */
+  }
+}
+
+.leaderboardButton {
+  user-select: none;
+  display: none;
+  position: fixed;
+  z-index: 1; /* Add this line to set the z-index */
+}
+
+#showCookiesButton {
+  top: 75px;
+  left: 10px;
+}
+
+#showClicksButton {
+  top: 75px;
+  left: 90px;
+}
+
+#toggleNotificationsButton {
+  user-select: none;
+}
+
+#loginButton {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  color: #000000;
+  user-select: none;
+  width: 142px;
+}
+#logoutButton {
+  position: fixed;
+  top: 10px;
+  left: 160px;
+  font-size: 16px;
+  color: #000000;
+  user-select: none;
+}
+
+#settings {
+  position: fixed;
+  top: 10px;
+  left: 232px;
+  font-size: 16px;
+  color: #000000;
+  user-select: none;
+}
+#settingsDisplay {
+  position: relative;
+  flex-direction: column;
+  border: 5px solid gray;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 200px;
+  width: 400px;
+  height: 300px;
+  background-color: rgb(24, 24, 24);
+  display: none;
+  z-index: 2;
+  box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, 0.4);
+}
+#lowResButton,
+#highResButton {
+  margin: 20px;
+}
+#minimizeSettingsButton {
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin-top: auto;
+  background-color: rgb(133, 18, 18);
+  color: black;
+  width: 20px;
+  height: 20px;
+}
+
+#displayArea {
+  font-size: 24px;
+  margin-bottom: 20px;
+  position: fixed;
+  top: 20px;
+  color: rgb(255, 255, 255); /* Text color */
+  user-select: none; /* Prevent text selection */
+}
+
+#clickTheMatter {
+  position: fixed;
+  top: 250px;
+  color: rgb(255, 255, 255); /* Text color */
+  font-size: 36px;
+  user-select: none; /* Prevent text selection */
+  z-index: -1;
+}
+
+#musicAttribution {
+  position: fixed;
+  top: 10px;
+  right: 230px;
+  color: rgb(255, 255, 255); /* Text color */
+  font-size: 12px;
+  user-select: none; /* Prevent accidental text selection */
+  z-index: -1;
+}
+
+/* Style for the "Max" button */
+.maxButton {
+  padding: 10px;
+  border: 2px solid #808080; /* Grey border for a disabled look */
+  border-radius: 12px;
+  background-color: #d3d3d3; /* Grey background color */
+  color: #808080; /* Grey text color */
+  user-select: none; /* Prevent text selection */
+}
+
+.cookieButton {
+  width: 120px;
+  height: 120px;
+  top: 100px;
+  border: none; /* Remove explicit border */
+  border-radius: 50%; /* Adjust this value to match your cookie image */
+  cursor: pointer;
+  position: fixed;
+  transform: scale(1); /* Initialize transform property */
+  color: white; /* Text color */
+  background-image: url("texture_cookie_game/matter1.png"); /* Replace with your images path */
+  background-size: 150% 150%;
+  background-position: center;
+  transition: transform 0.1s ease-in-out; /* Add transition for smoother animation */
+  transform-origin: center; /* Set transform origin to center for scaling in place */
+  user-select: none;
+}
+
+.cookieButton:hover {
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.6);
+}
+
+.cookieButton:active {
+  transform: scale(1.1); /* Scale up the button when active (clicked) */
+}
+
+.buyButton {
+  padding: 10px;
+  border: 2px solid #2e8b57;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #4caf50; /* Green by default when buyable */
+  color: rgb(255, 255, 255); /* Text color */
+  user-select: none; /* Prevent text selection for button texts */
+  font-size: 12px;
+  transform: scale(auto);
+  width: auto;
+  transition: transform 0.3s ease; /* Smooth transformation */
+  animation: float 3s ease-in-out infinite; /* Adjust duration for speed */
+}
+
+.maxButton {
+  transition: transform 0.3s ease; /* Smooth transformation */
+  animation: float 3s ease-in-out infinite; /* Adjust duration for speed */
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  } /* Adjust distance for floating effect */
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.buyButton.bought {
+  display: none; /* Hide the button when it's bought */
+}
+
+.buyButton.notBuyable {
+  background-color: #700a0a; /* Dark red when not buyable */
+  border-color: #700a0a; /* Red border when not buyable */
+}
+.buyButton.notBuyable:hover {
+  box-shadow: none;
+}
+
+/* Adjust the grid dimensions and gap as needed */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /*grid-template-columns: repeat(auto-fit, minmax(min(100px, 25%), 1fr));*/
+  gap: 15px;
+  justify-content: center;
+  margin: 20px; /* Adjust the margin to add space between the edges and buttons */
+  position: absolute; /* Change from fixed to absolute */
+  top: 50%; /* Adjust the top position as needed */
+  width: auto;
+  max-width: 96%;
+}
+
+@media (max-width: 850px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+  .buyButton {
+    padding: 3px;
+    font-size: 10px;
+  }
+  .cookieButton {
+    top: 75px;
+    width: 100px;
+    height: 100px;
+  }
+  #clickTheMatter {
+    top: 180px;
+    font-size: 18px;
+  }
+  #displayArea {
+    font-size: 12px;
+  }
+  #toggleNotificationsButton {
+    font-size: 9px;
+    padding: 4px;
+    width: 140px;
+  }
+  .notification {
+    font-size: 18px !important;
+  }
+  .maxButton {
+    padding: 3px;
+    font-size: 10px;
+  }
+  #settingsDisplay {
+    padding: 10px;
+    margin-top: 100px;
+    width: 200px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .buyButton {
+    padding: 2px;
+    font-size: 7px;
+  }
+  #soundControl {
+    top: 5px !important;
+    right: 5px !important;
+    font-size: 6px !important;
+    padding: 2px !important;
+  }
+  #loginButton {
+    top: 5px;
+    left: 5px;
+    font-size: 9px;
+    padding: 6px;
+    width: 100px;
+  }
+  #logoutButton {
+    top: 5px;
+    left: 115px;
+    font-size: 9px;
+    padding: 6px;
+  }
+  #toggleNotificationsButton {
+    top: 40px !important;
+    font-size: 7px !important;
+    padding: 2px !important;
+    left: 90% !important;
+    margin-right: 2px !important;
+    width: 80px !important;
+  }
+  .notification {
+    font-size: 12px !important;
+  }
+  #leaderboardContainer {
+    font-size: 10px;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  .leaderboardButton {
+    font-size: 10px;
+    padding: 2px;
+  }
+  #showClicksButton {
+    left: 70px;
+  }
+  #toggleLeaderboardButton {
+    top: 50px !important;
+    font-size: 10px !important;
+  }
+  .maxButton {
+    padding: 2px;
+    font-size: 7px;
+  }
+}
+
+/* Notification style */
+.notification {
+  position: absolute;
+  font-size: 24px;
+  color: white;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+  user-select: none; /* Prevent text selection for notification messages */
+}
+
+#notification-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.shooting-star {
+  position: absolute;
+  width: 1px;
+  height: 400px;
+  background-color: white;
+  transform: rotate(45deg); /* Diagonal movement */
+  opacity: 0.9;
+  z-index: -2;
+  animation: shootingStar 1s ease-out forwards; /* Animation duration */
+}
+
+@keyframes shootingStar {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-400px, 400px) rotate(45deg); /* Move diagonally */
+    opacity: 0;
+  }
+}
+
+#upgradeButton {
+  position: fixed;
+  top: 40%; /* Adjust the distance from the bottom */
+  transform: translateX(-50%); /* Adjust the position to center the button */
+}
+#soundControl {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  user-select: none; /* Prevent text selection */
+}
+
+#muteButton,
+#unmuteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  user-select: none; /* Prevent text selection */
+}
+
+button {
+  background-color: #ffffff;
+  border: 2px solid gray;
+  border-radius: 6px;
+  color: rgb(0, 0, 0);
+}
