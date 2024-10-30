@@ -341,6 +341,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function createButtonsFromUserData() {
     let buttonGrid = document.getElementById("buttonGrid");
     buttonGrid.innerHTML = ""; // Clear existing buttons
+    let upgradebuttonGrid = document.getElementById("upgradebuttonGrid");
+    upgradebuttonGrid.innerHTML = ""; // Clear existing buttons
 
     for (let i = 1; i <= 25; i++) {
       if (buyButtonsIterations[i - 1] != 1) {
@@ -866,31 +868,26 @@ function getCookieButtonName(index) {
 function getUpgradeButtonName(index) {
   // Add more names as needed
   const names = [
-    "meteoroid",
-    "asteroid",
-    "cookie",
-    "Fragment",
-    "Factor Y",
-    "Quark Splitter",
-    "Void Blaster",
-    "Wizard",
-    "Contorter",
-    "Astral Cleaver",
-    "Portal",
-    "Time Machine",
-    "Antimatter Condenser",
-    "Strange",
-    "Chancemaker",
-    "Fractal Engine",
-    "Silent Watcher",
-    "Wonder",
-    "Idle Dimension",
-    "Universal Omitter",
-    "Nuclear Extractor",
-    "Black hole",
-    "Reality Bending",
-    "Deus",
-    "Oghma Infinium",
+    "Meteoroid",
+    "Meteor",
+    "Comet",
+    "Asteroid",
+    "Dwarf Planet",
+    "Moon",
+    "Terrestrial Planet",
+    "Gas Giant",
+    "Brown Dwarf",
+    "Red Dwarf Star",
+    "Yellow Dwarf Star",
+    "White Dwarf Star",
+    "Blue Giant Star",
+    "Neutron Star",
+    "Red Giant Star",
+    "Black Hole",
+    "Supermassive Black Hole",
+    "Globular Cluster",
+    "Galaxy",
+    "Galaxy Cluster",
   ];
   return names[index - 1] || "Unnamed"; // Default to "Unnamed" if out of names
 }
